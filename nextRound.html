@@ -1,0 +1,195 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Qualified Players</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(
+135deg,
+#000814,
+#001d3d,
+#003566
+);
+min-height:100vh;
+padding:20px;
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+color:#FFD60A;
+font-size:2.8rem;
+margin-bottom:20px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+margin-bottom:20px;
+}
+
+.player{
+background:#0b2c57;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+font-weight:bold;
+}
+
+.admin{
+text-align:center;
+margin-top:20px;
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin:5px;
+}
+
+.nextBtn{
+background:#FFD60A;
+color:black;
+}
+
+.startBtn{
+background:#ff9800;
+color:white;
+}
+
+.backBtn{
+background:#00c853;
+color:white;
+margin-top:15px;
+}
+
+select{
+padding:12px;
+border:none;
+border-radius:10px;
+margin-right:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✅ Qualified Players</h1>
+
+<div class="card">
+
+<h2>Next Round Players</h2>
+
+<br>
+
+<select id="roundSelect">
+
+<option value="round2Qualified">
+Round 2
+</option>
+
+<option value="round3Qualified">
+Round 3
+</option>
+
+<option value="semiFinalQualified">
+Semi Final
+</option>
+
+<option value="finalQualified">
+Final
+</option>
+
+</select>
+
+<button onclick="loadRound()">
+Load Round
+</button>
+
+<div id="players">
+Loading...
+</div>
+
+</div>
+
+<div
+id="adminArea"
+class="admin">
+
+<button
+class="nextBtn"
+onclick="createNextRound()">
+⚽ Create Next Round
+</button>
+
+<button
+class="startBtn"
+onclick="generateNextRound()">
+🚀 Start New Round
+</button>
+
+<br><br>
+
+<button
+class="backBtn"
+onclick="location.href='index.html'">
+⬅ Back Home
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+if(
+localStorage.getItem("admin")
+!=="yes"
+){
+
+const area =
+document.getElementById(
+"adminArea"
+);
+
+if(area){
+area.style.display="none";
+}
+
+}
+
+</script>
+
+<script type="module"
+src="./firebase.js"></script>
+
+</body>
+</html>
+```

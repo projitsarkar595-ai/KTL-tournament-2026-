@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Admin Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(
+135deg,
+#000814,
+#001d3d,
+#003566
+);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.login-box{
+width:100%;
+max-width:450px;
+background:rgba(255,255,255,.08);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+text-align:center;
+color:white;
+}
+
+h1{
+color:#FFD60A;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+margin-bottom:15px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#FFD60A;
+color:black;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.back{
+margin-top:15px;
+background:#00c853;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h1>🔐 Admin Login</h1>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Admin Password">
+
+<button onclick="login()">
+Login
+</button>
+
+<button
+class="back"
+onclick="location.href='index.html'">
+
+⬅ Back Home
+
+</button>
+
+</div>
+
+<script>
+
+function login(){
+
+const pass =
+document.getElementById(
+"password"
+).value;
+
+if(pass==="KTL2026"){
+
+localStorage.setItem(
+"admin",
+"yes"
+);
+
+alert("Admin Login Success");
+
+location.href="draw.html";
+
+}else{
+
+alert("Wrong Password");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

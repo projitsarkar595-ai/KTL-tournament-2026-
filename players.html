@@ -1,0 +1,136 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Player Registration</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#000814,#001d3d,#003566);
+min-height:100vh;
+padding:20px;
+color:white;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+color:#FFD60A;
+margin-bottom:25px;
+font-size:2.5rem;
+text-shadow:0 0 15px rgba(255,214,10,.5);
+}
+
+.card{
+background:rgba(255,255,255,.08);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+margin-bottom:12px;
+font-size:16px;
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:12px;
+background:#FFD60A;
+color:black;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+#list p{
+background:#0b2c57;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.backBtn{
+margin-top:20px;
+background:#00c853;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📝 Player Registration</h1>
+
+<div class="card">
+
+<input
+id="name"
+type="text"
+placeholder="Player Name">
+
+<input
+id="team"
+type="text"
+placeholder="Team Name">
+
+<button onclick="addPlayer()">
+Register Player
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Registered Players</h2>
+
+<br>
+
+<div id="list">
+Loading Players...
+</div>
+
+</div>
+
+<button
+class="backBtn"
+onclick="location.href='index.html'">
+⬅ Back To Home
+</button>
+
+</div>
+
+<script type="module" src="./firebase.js"></script>
+
+</body>
+</html>
+```

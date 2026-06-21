@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KTL Tournament 2026</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+min-height:100vh;
+background:linear-gradient(135deg,#000814,#001d3d,#003566);
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+font-size:3rem;
+color:#FFD60A;
+margin-top:20px;
+text-shadow:0 0 20px rgba(255,214,10,.5);
+}
+
+.subtitle{
+text-align:center;
+opacity:.8;
+margin-top:10px;
+margin-bottom:30px;
+}
+
+.menu{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-bottom:30px;
+}
+
+button{
+padding:18px;
+border:none;
+border-radius:15px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-4px);
+}
+
+.menu button{
+background:#FFD60A;
+color:black;
+}
+
+.info-box{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+line-height:1.8;
+}
+
+.admin-section{
+text-align:center;
+margin-top:30px;
+}
+
+.admin-section button{
+background:#00C853;
+color:white;
+padding:18px 40px;
+}
+
+.live-box{
+background:rgba(255,255,255,.08);
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+}
+
+.live-box h2{
+color:#FFD60A;
+margin-bottom:15px;
+}
+
+hr{
+border:none;
+height:1px;
+background:rgba(255,255,255,.15);
+margin:30px 0;
+}
+
+.footer{
+margin-top:40px;
+text-align:center;
+opacity:.7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏆 KTL TOURNAMENT 2026</h1>
+
+<p class="subtitle">
+Live Football Tournament Dashboard
+</p>
+
+<div class="menu">
+
+<button onclick="location.href='players.html'">
+📝 Player Registration
+</button>
+
+<button onclick="location.href='draw.html'">
+⚽ Live Draw
+</button>
+
+<button onclick="location.href='nextRound.html'">
+✅ Qualified Players
+</button>
+
+<button onclick="location.href='champion.html'">
+🏆 Champion
+</button>
+
+</div>
+
+<div class="live-box">
+
+<h2>📢 Tournament Information</h2>
+
+<p>
+Players can register before the draw starts.
+</p>
+
+<p>
+All viewers can watch the tournament live.
+</p>
+
+<p>
+Only Admin can control draws, winners and rounds.
+</p>
+
+</div>
+
+<hr>
+
+<div class="admin-section">
+
+<button onclick="location.href='login.html'">
+🔐 Admin Login
+</button>
+
+</div>
+
+<div class="footer">
+
+KTL Tournament Management System
+
+</div>
+
+</div>
+<script type="module" src="./firebase.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Champion</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(
+135deg,
+#000814,
+#001d3d,
+#003566
+);
+min-height:100vh;
+padding:20px;
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+.champion-box{
+background:linear-gradient(
+135deg,
+#FFD60A,
+#FFB703
+);
+color:black;
+padding:40px;
+border-radius:25px;
+text-align:center;
+margin-bottom:25px;
+box-shadow:0 0 30px rgba(255,214,10,.4);
+}
+
+.title{
+font-size:2.5rem;
+font-weight:bold;
+}
+
+#championName{
+font-size:3rem;
+font-weight:bold;
+margin-top:15px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+margin-bottom:20px;
+}
+
+.card h2{
+color:#FFD60A;
+margin-bottom:15px;
+}
+
+.player{
+background:#0b2c57;
+padding:10px;
+border-radius:10px;
+margin-top:8px;
+}
+
+.awards p{
+margin-bottom:10px;
+font-size:18px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+font-size:16px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
+.saveBtn{
+background:#FFD60A;
+color:black;
+}
+
+.backBtn{
+background:#00C853;
+color:white;
+}
+
+.admin{
+margin-top:20px;
+}
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+#championName{
+font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Champion -->
+
+<div class="champion-box">
+
+<div class="title">
+🏆 TOURNAMENT CHAMPION 🏆
+</div>
+
+<div id="championName">
+Loading...
+</div>
+
+</div>
+
+<!-- Semi + Final -->
+
+<div class="grid">
+
+<div class="card">
+
+<h2>🏆 Semi Final Teams</h2>
+
+<div id="semiFinalData">
+Loading...
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🏁 Final Teams</h2>
+
+<div id="finalData">
+Loading...
+</div>
+
+</div>
+
+</div>
+
+<!-- Awards -->
+
+<div class="card awards">
+
+<h2>⭐ Tournament Awards</h2>
+
+<p>
+Best Player:
+<b id="bestPlayer">-</b>
+</p>
+
+<p>
+Highest Goal Scorer:
+<b id="topScorer">-</b>
+</p>
+
+<p>
+Man Of The Tournament:
+<b id="manOfTournament">-</b>
+</p>
+
+</div>
+
+<!-- Admin Section -->
+
+<div
+id="adminArea"
+class="card admin">
+
+<h2>🔐 Admin Awards Panel</h2>
+
+<input
+id="bestPlayerInput"
+placeholder="Best Player">
+
+<input
+id="topScorerInput"
+placeholder="Highest Goal Scorer">
+
+<input
+id="motInput"
+placeholder="Man Of The Tournament">
+
+<button
+class="saveBtn"
+onclick="saveAwards()">
+
+Save Awards
+
+</button>
+
+</div>
+
+<!-- Back -->
+
+<button
+class="backBtn"
+onclick="location.href='index.html'">
+
+⬅ Back Home
+
+</button>
+
+</div>
+
+<script>
+
+if(
+localStorage.getItem("admin")
+!=="yes"
+){
+
+const area =
+document.getElementById(
+"adminArea"
+);
+
+if(area){
+
+area.style.display="none";
+
+}
+
+}
+
+</script>
+
+<script
+type="module"
+src="./firebase.js">
+</script>
+
+</body>
+</html>
