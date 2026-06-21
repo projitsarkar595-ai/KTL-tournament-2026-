@@ -313,6 +313,11 @@ ${match.a}
 <strong> VS </strong>
 ${match.b}
 </p>
+${isAdmin() ? `
+<button onclick="editMatch(${index})">
+✏️ Edit Match
+</button>
+` : ""}
 
 <br>
 ${isAdmin() ? `
@@ -892,6 +897,54 @@ name:name
 );
 
 alert("Champion Updated");
+
+};
+window.editMatch = async(index)=>{
+
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
+
+const roundSnap =
+await get(
+ref(db,"rounds/" + currentRound)
+);
+
+if(!roundSnap.exists()) return;
+
+const data = roundSnap.val();
+
+const currentMatch =
+data.matches[index];
+
+const playerA =
+prompt(
+"Player A",
+currentMatch.a
+);
+
+if(!playerA) return;
+
+const playerB =
+prompt(
+"Player B",
+currentMatch.b
+);
+
+if(!playerB) return;
+
+data.matches[index] = {
+a: playerA,
+b: playerB
+};
+
+await set(
+ref(db,"rounds/" + currentRound),
+data
+);
+
+alert("Match Updated");
 
 };
 
