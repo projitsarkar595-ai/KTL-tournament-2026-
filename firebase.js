@@ -947,7 +947,15 @@ data
 alert("Match Updated");
 
 };
+window.logoutAdmin = ()=>{
 
+localStorage.removeItem("admin");
+
+alert("Logged Out");
+
+location.href="index.html";
+
+};
 window.addEventListener(
 "DOMContentLoaded",
 ()=>{
