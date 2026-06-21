@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Qualified Players</title>
+<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -27,7 +28,13 @@ min-height:100vh;
 padding:20px;
 color:white;
 }
-
+ input{
+padding:12px;
+border:none;
+border-radius:10px;
+width:250px;
+max-width:90%;
+}
 .container{
 max-width:1000px;
 margin:auto;
@@ -157,6 +164,19 @@ onclick="generateNextRound()">
 
 <br><br>
 
+<input
+id="qualifiedName"
+placeholder="Player Name">
+
+<br><br>
+
+<button onclick="addQualified()">
+➕ Add Qualified
+</button>
+
+<br><br>
+
+
 <button
 class="backBtn"
 onclick="location.href='index.html'">
@@ -190,6 +210,7 @@ area.style.display="none";
 <script type="module"
 src="./firebase.js"></script>
 
+
 </body>
 </html>
-```
+
