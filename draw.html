@@ -8,6 +8,8 @@
 content="width=device-width,initial-scale=1.0">
 
 <title>Live Tournament Draw</title>
+<link rel="stylesheet" href="style.css">
+
 
 <style>
 
@@ -163,14 +165,28 @@ TEAM B
 
 </div>
 
-<div
-id="adminArea"
-class="admin">
+<div id="adminArea" class="admin">
 
 <button onclick="startDraw()">
-
 🎲 Start Draw
+</button>
 
+<br><br>
+
+<button onclick="generateNextRound()">
+➡️ Next Round
+</button>
+
+<br><br>
+
+<button onclick="setChampionManual()">
+🏆 Set Champion
+</button>
+
+<br><br>
+
+<button onclick="logoutAdmin()">
+🚪 Logout
 </button>
 
 </div>
