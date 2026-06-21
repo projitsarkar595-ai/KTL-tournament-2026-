@@ -7,10 +7,11 @@ ref,
 push,
 set,
 get,
-onValue
+onValue,
+remove,
+update
 }
 from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
-
 /* =========================
    FIREBASE CONFIG
 ========================= */
@@ -71,7 +72,6 @@ alert("Player Registered");
 /* =========================
    LOAD PLAYERS
 ========================= */
-
 window.loadPlayers = () => {
 
 const list =
@@ -94,7 +94,7 @@ return;
 
 }
 
-let i=1;
+let i = 1;
 
 snapshot.forEach(child=>{
 
@@ -103,6 +103,19 @@ const p = child.val();
 list.innerHTML += `
 <p>
 ${i++}. ${p.name} (${p.team})
+
+${isAdmin() ? `
+
+<button onclick="editPlayer('${child.key}','${p.name}')">
+Edit
+</button>
+
+<button onclick="deletePlayer('${child.key}')">
+Delete
+</button>
+
+` : ""}
+
 </p>
 `;
 
@@ -169,6 +182,14 @@ b:players[i+1]
 }else{
 
 bye.push(players[i]);
+
+await push(
+ref(
+db,
+"qualified/" + roundName
+),
+players[i]
+);
 
 }
 
@@ -292,18 +313,23 @@ ${match.a}
 <strong> VS </strong>
 ${match.b}
 </p>
+${isAdmin() ? `
+<button onclick="editMatch(${index})">
+✏️ Edit Match
+</button>
+` : ""}
 
 <br>
-
-<button
-onclick="winner('${match.a}')">
+${isAdmin() ? `
+<button onclick="winner('${match.a}')">
 ${match.a} Win
 </button>
 
-<button
-onclick="winner('${match.b}')">
+<button onclick="winner('${match.b}')">
 ${match.b} Win
 </button>
+` : ""}
+
 
 </div>
 
@@ -429,16 +455,28 @@ return;
 }
 
 let i = 1;
-
 snap.forEach(child=>{
 
 box.innerHTML += `
 <div class="player">
+
 ${i++}. ${child.val()}
+
+${
+isAdmin()
+?
+`<button onclick="removeQualified('${child.key}')">
+❌
+</button>`
+:
+""
+}
+
 </div>
 `;
 
 });
+
 
 };
 
@@ -447,7 +485,7 @@ ${i++}. ${child.val()}
 ========================= */
 
 window.createNextRound = async () => {
- if(!isAdmin()){
+if(!isAdmin()){
   alert("Admin Only");
   return;
 }
@@ -543,6 +581,7 @@ return;
 }
 
 let nextRound;
+
 
 /* AUTO ROUND FLOW */
 
@@ -744,8 +783,170 @@ window.loadFinalTeams = () => {
 
 };
 
+window.addQualified = async () => {
 
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
 
+const name =
+document.getElementById("qualifiedName")?.value;
+
+if(!name) return;
+
+await push(
+ref(
+db,
+"qualified/" + currentRound
+),
+name
+);
+
+alert("Qualified Added");
+
+};
+window.removeQualified = async(id)=>{
+
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
+
+await remove(
+ref(
+db,
+"qualified/" +
+currentRound +
+"/" +
+id
+)
+);
+
+alert("Removed");
+
+};
+
+window.editPlayer = async(id,oldName)=>{
+
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
+
+const newName =
+prompt(
+"Enter New Name",
+oldName
+);
+
+if(!newName) return;
+
+await update(
+ref(
+db,
+"players/" + id
+),
+{
+name:newName
+}
+);
+
+alert("Player Updated");
+
+};
+window.deletePlayer = async(id)=>{
+
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
+
+const ok = confirm(
+"Delete this player?"
+);
+
+if(!ok) return;
+
+await remove(
+ref(
+db,
+"players/" + id
+)
+);
+
+alert("Player Deleted");
+
+};
+window.setChampionManual = async()=>{
+
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
+
+const name = prompt("Champion Name");
+
+if(!name) return;
+
+await set(
+ref(db,"champion"),
+{
+name:name
+}
+);
+
+alert("Champion Updated");
+
+};
+window.editMatch = async(index)=>{
+
+if(!isAdmin()){
+alert("Admin Only");
+return;
+}
+
+const roundSnap =
+await get(
+ref(db,"rounds/" + currentRound)
+);
+
+if(!roundSnap.exists()) return;
+
+const data = roundSnap.val();
+
+const currentMatch =
+data.matches[index];
+
+const playerA =
+prompt(
+"Player A",
+currentMatch.a
+);
+
+if(!playerA) return;
+
+const playerB =
+prompt(
+"Player B",
+currentMatch.b
+);
+
+if(!playerB) return;
+
+data.matches[index] = {
+a: playerA,
+b: playerB
+};
+
+await set(
+ref(db,"rounds/" + currentRound),
+data
+);
+
+alert("Match Updated");
+
+};
 
 window.addEventListener(
 "DOMContentLoaded",
